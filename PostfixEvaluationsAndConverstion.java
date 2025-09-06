@@ -15,7 +15,7 @@ public static void main(String[] args) {
         char ch=exp.charAt(i);
 
         if ((ch>='0'&&ch<='9')||(ch>='a'&&ch<='z')||(ch>='A' && ch<='Z')) {
-            vs.push(ch-'0');
+            vs.push(ch+'0');
             is.push(ch+"");
             ps.push(ch+"");
         }
@@ -35,7 +35,7 @@ public static void main(String[] args) {
             //ps handling
             String v2ps=ps.pop();
             String v1ps=ps.pop();
-            String psval="+"+v1ps+v2ps;
+            String psval="+"+v1ps+v2ps+;
             ps.push(psval);
         }else if (ch=='-') {
             //vs handiling
@@ -53,7 +53,7 @@ public static void main(String[] args) {
             //ps handling
             String v2ps=ps.pop();
             String v1ps=ps.pop();
-            String psval="-"+v1ps+v2ps;
+            String psval="-"+v1ps+v2ps+;
             ps.push(psval);
             
         }else if (ch=='*') {
@@ -72,7 +72,7 @@ public static void main(String[] args) {
             //ps handling
             String v2ps=ps.pop();
             String v1ps=ps.pop();
-            String psval="*"+v1ps+v2ps;
+            String psval=v1ps+v2ps+'*';
             ps.push(psval);
             
         }else if (ch=='/') {
@@ -91,7 +91,7 @@ public static void main(String[] args) {
             //ps handling
             String v2ps=ps.pop();
             String v1ps=ps.pop();
-            String psval="/"+v1ps+v2ps;
+            String psval=v1ps+v2ps+"/";
             ps.push(psval);
             
         }
