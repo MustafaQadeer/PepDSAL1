@@ -5,7 +5,6 @@ public static void main(String[] args) {
     System.out.print("Add a no.: ");
     int n=scn.nextInt();
     
-    //this is a comment
 
 }
 }
