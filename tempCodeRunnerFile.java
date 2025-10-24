@@ -1,44 +1,53 @@
 import java.util.*;
-
 public class revise1 {
-    public static void display(int[] arr){
-        for(int i=0;i<arr.length;i++){
-            System.out.println(arr[i]+" ");
+public static int operation(int v1,int v2, char ch){
+    if (ch=='+') {
+        return v1+v2;
+    }else if (ch=='-') {
+        return v1-v2;
+    }else if (ch=='*') {
+        return v1*v2;
+    }else if (ch=='/') {
+        return v1/v2;
+    }else{
+        return 0;
+    }
+}
+public static void main(String[] args) {
+    Scanner scn=new Scanner(System.in);
+    System.out.print("Enter expression: ");
+    String exp=scn.nextLine();
+
+    Stack<Integer> vs=new Stack<>();
+    Stack<String> is= new Stack<>();
+    Stack<String> ps= new Stack<>();
+
+    for(int i=0;i<exp.length();i++){
+        char ch=exp.charAt(i);
+        if (ch=='+'||ch=='-'||ch=='*'||ch=='/') {
+            int vv2=vs.pop();
+            int vv1=vs.pop();
+            int vval=operation(vv1,vv2,ch);
+            vs.push(vval);
+
+            String iv2=is.pop();
+            String iv1=is.pop();
+            String ival="("+iv1+ch+iv2+")";
+            is.push(ival);
+
+            String pv2=ps.pop();
+            String pv1=ps.pop();
+            String pval=ch+pv1+pv2;
+            ps.push(pval);
+        }else{
+            vs.push(ch-'0');
+            is.push(ch+"");
+            ps.push(ch+"");
         }
     }
-    public static int[] solve(int[] arr){
-        int[] nge=new int[arr.length];
-        Stack<Integer> st=new Stack<>();
+    System.out.println(vs.peek());
+    System.out.println(is.peek());
+    System.out.println(ps.peek());
 
-        nge[arr.length-1]=-1;
-        st.push(arr[arr.length-1]);
-
-        for(int i=arr.length-2;i>=0;i++){
-            while (st.size()>0 && arr[i]>=st.peek()) {
-                st.pop();
-            }
-            if (st.size()==0) {
-                nge[i]=-1;
-            }else{
-                nge[i]=st.peek();
-            }
-            st.push(arr[i]);
-        }
-        return nge;
-    }
-    public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        System.out.print("Enter the no. of elements: ");
-        int n = scn.nextInt();
-
-        int[] arr = new int[n];
-
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print("Enter element: ");
-            arr[i] = scn.nextInt();
-        }
-        
-        int[] nge=solve(arr);
-        display(nge);
-    }
+}
 }
